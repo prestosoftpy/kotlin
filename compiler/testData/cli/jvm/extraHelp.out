@@ -4,6 +4,8 @@ where advanced options include:
                              or all modules on the module path if <module> is ALL-MODULE-PATH
   -Xallow-jvm-ir-dependencies When not using the IR backend, do not report errors on those classes in dependencies, which were compiled by the IR backend
   -Xallow-no-source-files    Allow no source files
+  -Xallow-old-language-versions-for-ir
+                             Allow old language versions when using the IR backend
   -Xassertions={always-enable|always-disable|jvm|legacy}
                              Assert calls behaviour
                              -Xassertions=always-enable:  enable, ignore jvm assertion settings;

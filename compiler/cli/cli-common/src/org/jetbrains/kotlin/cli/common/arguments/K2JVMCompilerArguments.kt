@@ -107,6 +107,12 @@ class K2JVMCompilerArguments : CommonCompilerArguments() {
     )
     var isIrWithStableAbi: Boolean by FreezableVar(false)
 
+    @Argument(
+        value = "-Xallow-old-language-versions-for-ir",
+        description = "Allow old language versions when using the IR backend"
+    )
+    var allowOldLanguageVersionsForIr: Boolean by FreezableVar(false)
+
     @Argument(value = "-Xmodule-path", valueDescription = "<path>", description = "Paths where to find Java 9+ modules")
     var javaModulePath: String? by NullableStringFreezableVar(null)
 
@@ -354,7 +360,7 @@ class K2JVMCompilerArguments : CommonCompilerArguments() {
     }
 
     override fun checkIrSupport(languageVersionSettings: LanguageVersionSettings, collector: MessageCollector) {
-        if (!useIR) return
+        if (!useIR || allowOldLanguageVersionsForIr) return
 
         if (languageVersionSettings.languageVersion < LanguageVersion.KOTLIN_1_3
             || languageVersionSettings.apiVersion < ApiVersion.KOTLIN_1_3
